@@ -6,6 +6,7 @@ use App\Http\Controllers\IjinController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\SakitController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,9 @@ Route::get('login', [Controller::class, 'loginShow'])->name('login');
 Route::post('/login-action', [Controller::class, 'loginAction'])->name('login-action');
 Route::get('/log-out', [Controller::class, 'logOut'])->name('logOut');
 
+Route::get('/scan', [ScanController::class, 'showScan'])->name('scan-show');
+Route::post('/validasi-qrcode', [ScanController::class, 'validasiqrcode'])->name('validasiqrcode');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
@@ -36,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
     Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
+
 });
 
 

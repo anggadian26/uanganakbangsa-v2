@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Milon\Barcode\DNS2D;
+use Spatie\Glide\GlideImage;
+use Intervention\Image\Facades\Image;
 
 class SiswaController extends Controller
 {
@@ -73,6 +75,31 @@ class SiswaController extends Controller
     private function isQRCodeExists($qr_value)
     {
         return User::where('barcode', $qr_value)->exists();
+    }
+
+    public function downloadQRCode($barcode, $info)
+    { 
+        $dns2d = new DNS2D();
+
+        // Menghasilkan gambar QR Code
+        $qrCode = $dns2d->getBarcodePNG($barcode, 'QRCODE', 6, 6);
+    
+        // Mengonversi QR Code menjadi objek Intervention Image
+        $qrImage = Image::make($qrCode);
+    
+        // Menambahkan informasi di sebelah QR Code
+        $qrImage->text($info, $qrImage->getWidth() + 10, $qrImage->getHeight() / 2, function ($font) {
+            $font->file(public_path('path-to-your-font.ttf'));
+            $font->size(24);
+            $font->color('#000000');
+            $font->align('left');
+            $font->valign('middle');
+        });
+    
+        // Menyimpan atau menampilkan gambar
+        $qrImage->save(public_path('path-to-save/image.png'));
+    
+        return $qrImage->response('png');
     }
 
 }

@@ -26,7 +26,7 @@
                     data-bs-dismiss="modal">
                     Batal
                 </button>
-                <a class="btn btn-primary" href="">Download QRCODE</a>
+                <a class="btn btn-primary" href="{{ route('download-qrcode', ['barcode' => $i->barcode, 'info' => $i->name]) }}">Download QRCODE</a>
             </div>
         </div>
     </div>
