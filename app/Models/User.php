@@ -24,7 +24,7 @@ class User extends Authenticatable
         'jurusan_id',
         'angkatan',
         'barcode',
-        'role', // Include the 'role_id' field
+        'role_id', // Include the 'role_id' field
         'password',
     ];
 

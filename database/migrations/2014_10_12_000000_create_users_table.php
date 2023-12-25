@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->foreignId('jurusan_id');
             $table->integer('angkatan');
-            $table->string('barcode');
+            $table->bigInteger('barcode')->unique();
             $table->foreignId('role_id');
             $table->string('password');
             $table->rememberToken();

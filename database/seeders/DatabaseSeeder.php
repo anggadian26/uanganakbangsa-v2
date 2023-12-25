@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $this->call([
+            JurusanSeed::class
+        ]);
+
         DB::table('role')->insert([
             'role' => 'admin'
         ]);
@@ -35,13 +39,13 @@ class DatabaseSeeder extends Seeder
 
 
         DB::table('users')->insert([
-            'name' => 'Admin Presensi',
+            'name' => 'Admin Debug',
             'username' => 'admin',
             'email' => 'admin@default.com',
             'jurusan_id'    => 99,
             'angkatan'      => 99,
             'role_id'       => 1,
-            'barcode'       => '12BF45',
+            'barcode'       => 9993892034,
             'password' => Hash::make('password123'),
         ]);
 

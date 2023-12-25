@@ -6,6 +6,7 @@ use App\Http\Controllers\IjinController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\SakitController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,14 @@ Route::get('/log-out', [Controller::class, 'logOut'])->name('logOut');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        return view('app');
+        return view('welcome');
     })->name('welcome');
+
+    // Siswa
+    Route::get('/data-siswa', [SiswaController::class, 'showPage'])->name('data-siswa');
+    Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
+    Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
+    Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
 });
 
 

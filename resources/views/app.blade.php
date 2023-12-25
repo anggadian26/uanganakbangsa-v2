@@ -7,11 +7,12 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Uang Anak Bangsa Wisma Remaja Putra</title>
+    <title>UangAnakBangsa - @yield('head')</title>
 
     <meta name="description" content="" />
 
     @include('link-asset.head')
+    @yield('style')
 
 </head>
 
@@ -33,6 +34,7 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">@yield('title1')</span> @yield('title2')</h4>
                         @yield('content')
                     </div>
                     <!-- / Content -->

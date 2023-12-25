@@ -67,9 +67,8 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
         </li>
-        <li class="menu-item active">
-            <a href="#" class="menu-link">
-                {{-- <i class='bx bx-child'></i> --}}
+        <li class="menu-item {{ request()->routeIs('data-siswa', 'tambah-siswa') ? 'active' : '' }}">
+            <a href="{{ route('data-siswa') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Analytics">Data Siswa</div>
             </a>
