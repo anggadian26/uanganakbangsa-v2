@@ -127,7 +127,6 @@
                         <div class="card-body px-4 py-5 px-md-5">
                             <div class="d-flex justify-content-center">
                                 <div id="reader" class="scanner"></div>
-
                             </div>
                             <input class="form-control bg-transparent" type="text" name="result" id="result"
                                 disabled>
@@ -157,15 +156,14 @@
                 url: "{{ route('validasiqrcode') }}",
                 type: 'POST',
                 data: {
-                    _method: "POST", 
+                    _method: "POST",
                     _token: CSRF_TOKEN,
                     qr_code: id
                 },
                 success: function(response) {
                     console.log(response);
                     if (response.status == 200) {
-                        // Perbaikan: Redirect ke halaman setelah login berhasil
-                        window.location.href = "{{ url('/') }}";
+                        window.location.href = "{{ url('/home') }}";
                     } else {
                         alert('gagal');
                     }

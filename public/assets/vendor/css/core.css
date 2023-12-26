@@ -14714,10 +14714,11 @@ body {
 }
 .buy-now .btn-buy-now {
   position: fixed;
-  bottom: 3rem;
-  right: 1.625rem;
+  bottom: 5rem;
+  right: 1.400rem;
   z-index: 999999;
-  box-shadow: 0 1px 20px 1px #ff3e1d;
+  /* padding: 10px; */
+  box-shadow: 0 1px 20px 1px #2B95CB;
 }
 .buy-now .btn-buy-now:hover {
   box-shadow: none;

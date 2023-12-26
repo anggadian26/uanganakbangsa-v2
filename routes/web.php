@@ -8,6 +8,8 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\SakitController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TabunganController;
+use App\Http\Controllers\TarikSaldoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +42,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
     Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
+});
 
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+    Route::get('/home', [HomeController::class, 'indexSiswa'])->name('home-siswa');
+
+    Route::get('/tabungan-siswa', [TabunganController::class, 'indexSiswa'])->name('tabunganIndex');
+
+    Route::get('/tarik-saldo', [TarikSaldoController::class, 'indexSiswa'])->name('tariksaldo-siswa');
 });
 
 
