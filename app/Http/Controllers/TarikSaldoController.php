@@ -9,4 +9,9 @@ class TarikSaldoController extends Controller
     public function indexSiswa() {
         return view('tarik-saldo.index_siswa');
     }
+
+    public function tarikSaldoSiswa(Request $request)
+    {
+        dd($request->all());
+    }
 }

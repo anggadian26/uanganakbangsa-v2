@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IjinController;
+use App\Http\Controllers\MasukSaldoController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\SakitController;
@@ -37,19 +38,29 @@ Route::middleware(['auth'])->group(function () {
         return view('welcome');
     })->name('welcome');
 
+
+    Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
     // Siswa
     Route::get('/data-siswa', [SiswaController::class, 'showPage'])->name('data-siswa');
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
-    Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
+    
+   Route::get('/tabungan-siswa-admin', [TabunganController::class, 'indexAdmin'])->name('tabungan-admin');
+
+    // Penarikan admin
+    Route::post('/penarikan-admin', [TabunganController::class, 'penarikanAdmin'])->name('penarikanAdmin');
+    Route::post('/pemasukkan-admin', [TabunganController::class, 'pemasukkanAdmin'])->name('pemasukkanAdmin');
 });
+
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/home', [HomeController::class, 'indexSiswa'])->name('home-siswa');
-
     Route::get('/tabungan-siswa', [TabunganController::class, 'indexSiswa'])->name('tabunganIndex');
-
     Route::get('/tarik-saldo', [TarikSaldoController::class, 'indexSiswa'])->name('tariksaldo-siswa');
+    Route::post('/tarik-saldo-action', [TarikSaldoController::class, 'tarikSaldoSiswa'])->name('tariksaldo-action');
 });
 
 

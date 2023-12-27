@@ -60,8 +60,8 @@
 
 
         @if (Auth::user()->role->role == 'admin')
-            <li class="menu-item active">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ request()->routeIs('welcome') ? 'active' : '' }}">
+                <a href="{{ route('welcome') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Dashboard</div>
                 </a>
@@ -76,28 +76,11 @@
                     <div data-i18n="Analytics">Data Siswa</div>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                    <div data-i18n="Authentications">Authentications</div>
+            <li class="menu-item {{ request()->routeIs('tabungan-admin') ? 'active' : '' }}">
+                <a href="{{ route('tabungan-admin') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+                    <div data-i18n="Analytics">Tabungan Siswa</div>
                 </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                            <div data-i18n="Basic">Login</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                            <div data-i18n="Basic">Register</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                            <div data-i18n="Basic">Forgot Password</div>
-                        </a>
-                    </li>
-                </ul>
             </li>
         @endif
         @if (Auth::user()->role->role == 'siswa')

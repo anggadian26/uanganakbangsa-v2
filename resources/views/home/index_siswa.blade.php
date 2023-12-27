@@ -16,6 +16,14 @@
 </head>
 
 <body>
+
+    <div class="loading-overlay">
+        <div class="load-bar">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -95,10 +103,16 @@
     </div>
     <!-- / Layout wrapper -->
     <div class="buy-now">
-        <a class="btn btn-primary btn-buy-now text-white"><span class="tf-icons bx bxs-wallet"></span>&nbsp; Tarik Saldo</a>
+        <a href="{{ route('tariksaldo-siswa') }}" class="btn btn-primary btn-buy-now text-white"><span class="tf-icons bx bxs-wallet"></span>&nbsp; Tarik Saldo</a>
     </div>
     <!--script-->
     @include('link-asset.script')
+
+    <script>
+        $(window).on("load", function() {
+            $(".loading-overlay").fadeOut("slow");
+        });
+    </script>
     <!--/ script-->
 </body>
 

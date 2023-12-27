@@ -197,6 +197,8 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Spatie\Glide\GlideServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
     ],
 
     /*
@@ -217,6 +219,8 @@ return [
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'GlideImage' => Spatie\Glide\GlideImageFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
     ])->toArray(),
 
 ];

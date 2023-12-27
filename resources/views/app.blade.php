@@ -17,6 +17,13 @@
 </head>
 
 <body>
+    <div class="loading-overlay">
+        <div class="load-bar">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
 
     @php
         $user = Auth::user();
@@ -57,10 +64,17 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    @include('sweetalert::alert')
     <!-- / Layout wrapper -->
 
     <!--script-->
         @include('link-asset.script')
+
+        <script>
+            $(window).on("load", function() {
+                $(".loading-overlay").fadeOut("slow");
+            });
+        </script>
     <!--/ script-->
 </body>
 
