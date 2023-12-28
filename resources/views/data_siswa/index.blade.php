@@ -93,7 +93,7 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#modalToggle"><i class="bx bx-detail me-1"></i>
+                                                data-bs-target="#detailUser{{ $i->id }}"><i class="bx bx-detail me-1"></i>
                                                 Detail</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-edit-alt me-1"></i>

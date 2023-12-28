@@ -11,23 +11,23 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="form-label">Nama</label>
-                            <input type="text" id="nameWithTitle" class="form-control" value="{{ $i->name }}"
+                            <label for="nameWithTitlePenarikan{{ $i->id }}" class="form-label">Nama</label>
+                            <input type="text" id="nameWithTitlePenarikan{{ $i->id }}" class="form-control" value="{{ $i->name }}"
                                 readonly />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="form-label">Saldo</label>
-                            <input type="text" id="nameWithTitle" class="form-control"
+                            <label for="saldoPenarikan{{ $i->id }}" class="form-label">Saldo</label>
+                            <input type="text" id="saldoPenarikan{{ $i->id }}" class="form-control"
                                 value="Rp. {{ number_format($i->saldo_amount, 0, ',', '.') }}" readonly />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="form-label">Nominal Tarik Saldo</label>
-                            <input type="text" class="form-control @error('penarikan') is-invalid @enderror" id="nominalInput"
-                                aria-describedby="defaultFormControlHelp" oninput="formatNominal(this)"
+                            <label for="nominalInputPenarikan{{ $i->id }}" class="form-label">Nominal Tarik Saldo</label>
+                            <input type="text" class="form-control @error('penarikan') is-invalid @enderror" id="nominalInputPenarikan{{ $i->id }}"
+                                aria-describedby="defaultFormControlHelp" oninput="formatNominalPenarikan(this)"
                                 name="hiden" />
                             @error('penarikan')
                                 <div class="invalid-feedback">
@@ -38,11 +38,11 @@
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="form-label">Keterangan (Opsional)</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="keterangan"></textarea>
+                            <label for="keteranganPenarikan{{ $i->id }}" class="form-label">Keterangan (Opsional)</label>
+                            <textarea class="form-control" id="exampleFormControlTextareaPenarikan{{ $i->id }}" rows="2" name="keterangan"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" id="hiddenNominalInput" name="penarikan" />
+                    <input type="hidden" id="hiddenNominalInputPenarikan{{ $i->id }}" name="penarikan" />
                     <input type="hidden" name="user_id" value="{{ $i->user_id }}" />
                     <input type="hidden" name="saldo_awal" value="{{ $i->saldo_amount }}" />
                     <div class="modal-footer">
@@ -58,7 +58,7 @@
 </div>
 
 <script>
-    function formatNominal(input) {
+    function formatNominalPenarikan(input) {
         let value = input.value.replace(/[^\d]/g, ''); // Hapus semua karakter kecuali digit
         let numericValue = parseInt(value);
 
@@ -68,13 +68,13 @@
             input.setAttribute('data-value', numericValue);
 
             // Set nilai sebenarnya di input tersembunyi
-            let hiddenInput = document.getElementById('hiddenNominalInput');
+            let hiddenInput = document.getElementById('hiddenNominalInputPenarikan{{ $i->id }}');
             hiddenInput.value = numericValue;
         } else {
             // Tangani jika input tidak berisi nilai numerik
             input.value = '';
             input.setAttribute('data-value', '');
-            let hiddenInput = document.getElementById('hiddenNominalInput');
+            let hiddenInput = document.getElementById('hiddenNominalInputPenarikan{{ $i->id }}');
             hiddenInput.value = '';
         }
     }

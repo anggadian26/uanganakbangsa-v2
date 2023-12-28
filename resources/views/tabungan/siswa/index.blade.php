@@ -16,6 +16,7 @@
                 padding-top: 2px;
                 padding-bottom: 2px
             }
+
             .content-end {
                 justify-content: end;
                 padding-right: -20px;
@@ -28,32 +29,23 @@
         <div class="d-grid gap-4 justify-content-md-end content-end">
             <div class="row text-end">
                 <small class="ml-auto">Sisa Saldo</small>
-                <h5 class="fw-bold text-primary">Rp. 450.000</h5>
+                <h5 class="fw-bold text-primary">Rp. {{ number_format($saldo[0]->saldo_amount, 0, ',', '.') }}</h5>
             </div>
         </div>
-        <form action="#" method="get">
+        <form action="{{ route('tabunganIndex') }}" method="get">
             @csrf
             <div class="row mb-3">
-                <div class="col-md-3">
-                    <label for="" class="fw-bold">Nama</label>
-                    <input name="name" type="text" class="form-control" placeholder="Nama"
-                        value="{{ isset($_GET['name']) ? $_GET['name'] : '' }}">
-                </div>
-                <div class="col-md-2">
-                    <label for="" class="fw-bold">Angkatan</label>
-                    <input name="angkatan" type="number" class="form-control" placeholder="Angkatan"
-                        value="{{ isset($_GET['angkatan']) ? $_GET['angkatan'] : '' }}">
-                </div>
-                <div class="col-md-3">
-                    <label for="" class="fw-bold">Jurusan</label>
-                    <select name="shift" class="form-select">
-                        <option value="">- All -</option>
-                        <option value="">REKAYASA PERANGKAT LUNAK</option>
-                    </select>
-                </div>
-
-                <div class="col-md-1 pt-0">
-                    <button type="submit" class="btn btn-primary mt-4 btn-cari">Cari</button>
+                <div class="col-md-4">
+                    <label for="" class="fw-bold">Tanggal</label>
+                    <div class="input-group">
+                        <input
+                        name="tanggal" type="date" class="form-control" placeholder="tanggal"
+                        value="{{ isset($_GET['tanggal']) ? $_GET['tanggal'] : '' }}"
+                          aria-describedby="button-addon2"
+                        />
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2"><i class='bx bx-search-alt-2'></i></button>
+                      </div>
+                
                 </div>
             </div>
         </form>
@@ -68,32 +60,44 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>12/12/2023</strong></td>
-                        <td><span class="bx bx-up-arrow-alt text-success"></span>Rp. 200.000</td>
-                        <td></span>Rp. -</td>
-                        <td><span class="fw-semibold">Rp. 500.000</span></td>
-                    </tr>
-                    <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>12/12/2023</strong></td>
-                        <td>Rp. -</td>
-                        <td><span class="bx bx-down-arrow-alt text-danger"></span>Rp. 50.000</td>
-                        <td><span class="fw-semibold">Rp. 450.000</span></td>
-                    </tr>
-                    <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>13/12/2023</strong></td>
-                        <td>Rp. -</td>
-                        <td><span class="bx bx-down-arrow-alt text-danger"></span>Rp. 50.000</td>
-                        <td><span class="fw-semibold">Rp. 400.000</span></td>
-                    </tr>
-                    <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>14/12/2023</strong></td>
-                        <td>Rp. -</td>
-                        <td><span class="bx bx-down-arrow-alt text-danger"></span>Rp. 50.000</td>
-                        <td><span class="fw-semibold">Rp. 350.000</span></td>
-                    </tr>
+                    @if (count($tabungan) < 1)
+                        <tr>
+                            <td colspan="8" style="padding: 20px; font-size: 20px;"><span>No data found</span> </td>
+                        </tr>
+                    @else
+                        @foreach ($tabungan as $i)
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>{{ $i->tanggal }}</strong></td>
+                                <td><span class="bx bx-up-arrow-alt text-success"></span>Rp. {{ number_format($i->pemasukkan, 0, ',', '.') }}</td>
+                                <td><span class="bx bx-down-arrow-alt text-danger"></span>Rp. {{ number_format($i->penarikan, 0, ',', '.') }}</td>
+                                <td><span class="fw-semibold">Rp. {{ number_format($i->jumlah_sisa, 0, ',', '.') }}</span></td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
+        </div>
+        <div class="mt-5">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item {{ ($tabungan->currentPage() == 1) ? 'disabled' : '' }} prev">
+                        <a class="page-link" href="{{ $tabungan->previousPageUrl() }}" aria-label="Previous">
+                            <i class="tf-icon bx bx-chevrons-left"></i>
+                        </a>
+                    </li>
+                    @for ($i = 1; $i <= $tabungan->lastPage(); $i++)
+                        <li class="page-item {{ ($tabungan->currentPage() == $i) ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $tabungan->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="page-item {{ ($tabungan->currentPage() == $tabungan->lastPage()) ? 'disabled' : '' }} next">
+                        <a class="page-link" href="{{ $tabungan->nextPageUrl() }}" aria-label="Next">
+                            <i class="tf-icon bx bx-chevrons-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <span>Total data {{ $total[0]->totalData }}, halaman {{ $tabungan->currentPage() }} dari {{ $tabungan->lastPage() }}</span>
+            </nav>
         </div>
     </div>
 @endsection

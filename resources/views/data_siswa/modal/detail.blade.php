@@ -1,5 +1,5 @@
 <!-- Modal 1-->
-<div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel" tabindex="-1" style="display: none"
+<div class="modal fade" id="detailUser{{ $i->id }}" aria-labelledby="modalToggleLabel" tabindex="-1" style="display: none"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

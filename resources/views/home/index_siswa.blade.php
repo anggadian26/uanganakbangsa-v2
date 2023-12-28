@@ -51,7 +51,8 @@
                                                     {{ Auth::user()->name }} 👋</h5>
                                                 <p class="mb-0 text-end">Saldo</p>
                                                 <h4 class="text-end pb-0 text-primary"><span class="fw-bold">Rp.
-                                                    </span>930.000</h4>
+                                                    </span>{{ number_format($saldo[0]->saldo_amount, 0, ',', '.') }}
+                                                </h4>
                                             </div>
                                         </div>
                                     </div>
@@ -63,9 +64,22 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <span class="fw-semibold d-block mb-1">Pemasukkan</span>
-                                                <h5 class="card-title text-success mb-2"><i
-                                                        class="bx bx-up-arrow-alt"></i> Rp. 300.000</h5>
-                                                <small class="fw-semibold">20/10/2023</small>
+                                                @if ($pemasukkan == [] || empty($pemasukkan))
+                                                    <h5 class="card-title text-success mb-2"><i
+                                                            class="bx bx-up-arrow-alt"></i> Rp.
+                                                        - </h5>
+                                                    <small class="fw-semibold"> - </small>
+                                                @else
+                                                    @foreach ($pemasukkan as $x)
+                                                        <h5 class="card-title text-success mb-2"><i
+                                                                class="bx bx-up-arrow-alt"></i> Rp.
+                                                            {{ number_format($x->pemasukkan, 0, ',', '.') }}</h5>
+                                                        <small class="fw-semibold">{{ $x->tanggal }}</small>
+                                                    @endforeach
+                                                @endif
+
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -73,9 +87,20 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <span class="fw-semibold d-block mb-1">Penarikkan</span>
-                                                <h5 class="card-title text-danger mb-2"><i
-                                                        class="bx bx-down-arrow-alt"></i> Rp. 50.000</h5>
-                                                <small class="fw-semibold">20/10/2023</small>
+                                                @if ($pengeluaran == [] || empty($pengeluaran))
+                                                    <h5 class="card-title text-danger mb-2"><i
+                                                            class="bx bx-down-arrow-alt"></i> Rp. - </h5>
+                                                    <small class="fw-semibold"> - </small>
+                                                @else
+                                                    @foreach ($pengeluaran as $x)
+                                                        <h5 class="card-title text-danger mb-2"><i
+                                                                class="bx bx-down-arrow-alt"></i> Rp.
+                                                            {{ number_format($x->penarikan, 0, ',', '.') }}</h5>
+                                                        <small class="fw-semibold">{{ $x->tanggal }}</small>
+                                                    @endforeach
+                                                @endif
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -97,13 +122,14 @@
         </div>
         <!-- / Layout page -->
     </div>
-
+    @include('sweetalert::alert')
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
     <div class="buy-now">
-        <a href="{{ route('tariksaldo-siswa') }}" class="btn btn-primary btn-buy-now text-white"><span class="tf-icons bx bxs-wallet"></span>&nbsp; Tarik Saldo</a>
+        <a href="{{ route('tariksaldo-siswa') }}" class="btn btn-primary btn-buy-now text-white"><span
+                class="tf-icons bx bxs-wallet"></span>&nbsp; Tarik Saldo</a>
     </div>
     <!--script-->
     @include('link-asset.script')

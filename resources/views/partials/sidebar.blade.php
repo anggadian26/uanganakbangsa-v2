@@ -82,6 +82,29 @@
                     <div data-i18n="Analytics">Tabungan Siswa</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                  <div data-i18n="Account Settings">Umum</div>
+                </a>
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="pages-account-settings-account.html" class="menu-link">
+                      <div data-i18n="Account">Jurusan</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                      <div data-i18n="Notifications">Notifications</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="pages-account-settings-connections.html" class="menu-link">
+                      <div data-i18n="Connections">Connections</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
         @endif
         @if (Auth::user()->role->role == 'siswa')
             <li class="menu-item {{ request()->routeIs('home-siswa') ? 'active' : '' }}">
@@ -106,4 +129,5 @@
                 </a>
             </li>
         @endif
+    </ul>
 </aside>

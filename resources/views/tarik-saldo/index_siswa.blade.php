@@ -10,7 +10,7 @@
         <div class="d-grid gap-4 justify-content-md-end content-end">
             <div class="row text-end">
                 <small class="ml-auto">Sisa Saldo</small>
-                <h5 class="fw-bold text-primary">Rp. 450.000</h5>
+                <h5 class="fw-bold text-primary">Rp. {{ number_format($saldo[0]->saldo_amount, 0, ',', '.') }}</h5>
             </div>
         </div>
         <form action="{{ route('tariksaldo-action') }}" method="POST">
@@ -35,6 +35,7 @@
                 </div>
             </div>
             <input type="hidden" id="hiddenNominalInput" name="penarikan" />
+            <input type="hidden" id="hiddenNominalInput" name="saldo_awal" value="{{ $saldo[0]->saldo_amount }}"/>
         </form>
 
         <script>

@@ -10,14 +10,45 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 date_default_timezone_set("Asia/Jakarta");
 
 class TabunganController extends Controller
 {
-    public function indexSiswa()
+    public function indexSiswa(Request $request)
     {
-        return view('tabungan.siswa.index');
+        $tanggal = $request->tanggal;
+
+        $user_id = Auth::id();
+        $query = TabunganModel::query()
+            ->from('tabungan')
+            ->where('user_id', '=', $user_id)
+            ->when($tanggal, function ($query, $tanggal) {
+                return $query->whereDate('tanggal', $tanggal);
+            })
+            ->orderBy('tanggal', 'asc');
+
+        $tabungan = $query->paginate(50);
+
+        $queryCount = "
+            SELECT COUNT(1) AS totalData
+            FROM users A
+            INNER JOIN role B ON A.role_id = B.role_id
+            WHERE B.role = 'siswa'
+        ";
+        $total = DB::select($queryCount);
+
+        $query = "
+            SELECT *
+            FROM saldo
+            WHERE user_id = $user_id
+        ";
+
+        $saldo = DB::select($query);
+
+        return view('tabungan.siswa.index', compact('tabungan', 'total', 'saldo'));
     }
+
 
     public function indexAdmin(Request $request)
     {
@@ -69,7 +100,7 @@ class TabunganController extends Controller
 
     public function penarikanAdmin(Request $request)
     {
-        if($request->penarikan == null || $request->penarikan == 0) {
+        if ($request->penarikan == null || $request->penarikan == 0) {
             return redirect()->route('tabungan-admin')->with('toast_error', 'Saldo gagal ditarik!');
         }
 
@@ -106,9 +137,9 @@ class TabunganController extends Controller
         return redirect()->route('tabungan-admin')->with('toast_success', 'Saldo berhasil ditarik!');
     }
 
-    public function pemasukkanAdmin(Request $request) 
+    public function pemasukkanAdmin(Request $request)
     {
-        if($request->pemasukkan == null || $request->pemasukkan == 0) {
+        if ($request->pemasukkan == null || $request->pemasukkan == 0) {
             return redirect()->route('tabungan-admin')->with('toast_error', 'Saldo gagal ditambahkan!');
         }
 

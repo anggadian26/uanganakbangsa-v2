@@ -47,7 +47,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/data-siswa', [SiswaController::class, 'showPage'])->name('data-siswa');
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
-    
+
    Route::get('/tabungan-siswa-admin', [TabunganController::class, 'indexAdmin'])->name('tabungan-admin');
 
     // Penarikan admin
@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/tabungan-siswa', [TabunganController::class, 'indexSiswa'])->name('tabunganIndex');
     Route::get('/tarik-saldo', [TarikSaldoController::class, 'indexSiswa'])->name('tariksaldo-siswa');
     Route::post('/tarik-saldo-action', [TarikSaldoController::class, 'tarikSaldoSiswa'])->name('tariksaldo-action');
+    Route::get('/success', [TarikSaldoController::class, 'successPage'])->name('success');
 });
 
 
