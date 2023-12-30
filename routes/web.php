@@ -6,6 +6,7 @@ use App\Http\Controllers\IjinController;
 use App\Http\Controllers\MasukSaldoController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\RekamKeuanganController;
 use App\Http\Controllers\SakitController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\SiswaController;
@@ -37,8 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
     })->name('welcome');
-
-
     Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
 });
 
@@ -53,6 +52,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Penarikan admin
     Route::post('/penarikan-admin', [TabunganController::class, 'penarikanAdmin'])->name('penarikanAdmin');
     Route::post('/pemasukkan-admin', [TabunganController::class, 'pemasukkanAdmin'])->name('pemasukkanAdmin');
+
+    // Rekam Keuangan
+    Route::get('/rekam-keuangan', [RekamKeuanganController::class, 'index'])->name('indexRekamKeuangan');
+    Route::get('/delete-rekam-keuangan/{id}', [RekamKeuanganController::class, 'delete'])->name('deleteRekamKeuangan');
+
+    // Jurusan
+    // Route::get('/jurusan', )
 });
 
 

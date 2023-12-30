@@ -79,7 +79,13 @@
             <li class="menu-item {{ request()->routeIs('tabungan-admin') ? 'active' : '' }}">
                 <a href="{{ route('tabungan-admin') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-                    <div data-i18n="Analytics">Tabungan Siswa</div>
+                    <div data-i18n="Analytics">Saldo Siswa</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('indexRekamKeuangan') ? 'active' : '' }}">
+                <a href="{{ route('indexRekamKeuangan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+                    <div data-i18n="Analytics">Rekam Keuangan</div>
                 </a>
             </li>
             <li class="menu-item">
