@@ -88,27 +88,24 @@
                     <div data-i18n="Analytics">Rekam Keuangan</div>
                 </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ request()->routeIs('indexJurusan', 'indexDeleteReq') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
                   <div data-i18n="Account Settings">Umum</div>
                 </a>
                 <ul class="menu-sub">
-                  <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                    <li class="menu-item {{ request()->routeIs('indexDeleteReq') ? 'active' : '' }}">
+                        <a href="{{ route('indexDeleteReq') }}" class="menu-link">
+                          <div data-i18n="Account">Hapus Data Keuangan</div>
+                        </a>
+                      </li>
+                  <li class="menu-item {{ request()->routeIs('indexJurusan') ? 'active' : '' }}">
+                    <a href="{{ route('indexJurusan') }}" class="menu-link">
                       <div data-i18n="Account">Jurusan</div>
                     </a>
                   </li>
-                  <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                      <div data-i18n="Notifications">Notifications</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                      <div data-i18n="Connections">Connections</div>
-                    </a>
-                  </li>
+
+
                 </ul>
               </li>
         @endif

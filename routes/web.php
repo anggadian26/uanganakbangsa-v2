@@ -3,10 +3,12 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IjinController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MasukSaldoController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RekamKeuanganController;
+use App\Http\Controllers\ReqDeleteController;
 use App\Http\Controllers\SakitController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\SiswaController;
@@ -58,7 +60,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/delete-rekam-keuangan/{id}', [RekamKeuanganController::class, 'delete'])->name('deleteRekamKeuangan');
 
     // Jurusan
-    // Route::get('/jurusan', )
+    Route::get('/jurusan', [JurusanController::class, 'index'])->name('indexJurusan');
+    Route::post('/add-jurusan', [JurusanController::class, 'AddData'])->name('Addjurusan');
+    Route::get('/delete-jurusan/{id}', [JurusanController::class, 'deleteData'])->name('deleteJurusan');
+
+    // Request-Delete
+    Route::get('/hapus-data-keuangan', [ReqDeleteController::class, 'index'])->name('indexDeleteReq');
+    Route::post('/action-delete-req', [ReqDeleteController::class, 'action'])->name('actionDeleteReq');
 });
 
 

@@ -64,7 +64,7 @@ class RekamKeuanganController extends Controller
     public function delete($id)
     {
         $tabungan = TabunganModel::find($id);
-        
+
         $keluar = $tabungan->penarikan;
         $masuk = $tabungan->pemasukkan;
         $user_id = $tabungan->user_id;
