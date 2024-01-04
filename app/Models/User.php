@@ -24,7 +24,7 @@ class User extends Authenticatable
         'jurusan_id',
         'angkatan',
         'barcode',
-        'role', // Include the 'role_id' field
+        'role_id', // Include the 'role_id' field
         'password',
     ];
 
@@ -50,8 +50,9 @@ class User extends Authenticatable
     /**
      * Get the role associated with the user.
      */
-    // public function role()
-    // {
-    //     return $this->belongsTo(Role::class, 'role_id');
-    // }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

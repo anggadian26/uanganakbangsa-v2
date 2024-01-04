@@ -22,6 +22,11 @@
 
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
+{{-- link css page custom --}}
+<link rel="stylesheet" href="{{ asset('assets/css/page.css') }}" />
+{{-- end link css --}}
+
+
 <!-- Page CSS -->
 
 <!-- Helpers -->

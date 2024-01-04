@@ -7,15 +7,27 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Uang Anak Bangsa Wisma Remaja Putra</title>
+    <title>UangAnakBangsa - @yield('head')</title>
 
     <meta name="description" content="" />
 
     @include('link-asset.head')
+    @yield('style')
 
 </head>
 
 <body>
+    <div class="loading-overlay">
+        <div class="load-bar">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    @php
+        $user = Auth::user();
+    @endphp
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -33,6 +45,7 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">@yield('title1')</span> @yield('title2')</h4>
                         @yield('content')
                     </div>
                     <!-- / Content -->
@@ -51,10 +64,17 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    @include('sweetalert::alert')
     <!-- / Layout wrapper -->
 
     <!--script-->
         @include('link-asset.script')
+
+        <script>
+            $(window).on("load", function() {
+                $(".loading-overlay").fadeOut("slow");
+            });
+        </script>
     <!--/ script-->
 </body>
 

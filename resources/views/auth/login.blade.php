@@ -172,7 +172,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <a class="btn btn-primary d-flex align-items-center justify-content-center w-100 fw-bold"
-                                            href="#">
+                                            href="{{ route('scan-show') }}">
                                             <i class='pe-2 tf-icons bx bx-scan fs-4'></i> Scan
                                         </a>
                                     </div>

@@ -35,9 +35,7 @@ class Controller extends BaseController
             // }
         }
 
-        return back()->withErrors([
-            'email' => 'Kombinasi username dan password tidak cocok.',
-        ])->onlyInput('email');
+        return back()->with('loginError', 'Login failed!');
     }
 
     public function logOut() {
