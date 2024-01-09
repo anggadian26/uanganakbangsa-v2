@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\catatanKeuanganController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IjinController;
@@ -49,7 +50,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
 
-   Route::get('/tabungan-siswa-admin', [TabunganController::class, 'indexAdmin'])->name('tabungan-admin');
+    Route::get('/tabungan-siswa-admin', [TabunganController::class, 'indexAdmin'])->name('tabungan-admin');
 
     // Penarikan admin
     Route::post('/penarikan-admin', [TabunganController::class, 'penarikanAdmin'])->name('penarikanAdmin');
@@ -67,6 +68,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Request-Delete
     Route::get('/hapus-data-keuangan', [ReqDeleteController::class, 'index'])->name('indexDeleteReq');
     Route::post('/action-delete-req', [ReqDeleteController::class, 'action'])->name('actionDeleteReq');
+
+    // catatan-keuangan
+    Route::get('/catatan-keuangan', [catatanKeuanganController::class, 'index'])->name('catatanKeuanganIndex');
 });
 
 
