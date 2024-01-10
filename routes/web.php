@@ -15,6 +15,7 @@ use App\Http\Controllers\ScanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TabunganController;
 use App\Http\Controllers\TarikSaldoController;
+use App\Http\Controllers\TransaksiNowController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Rekam Keuangan
     Route::get('/rekam-keuangan', [RekamKeuanganController::class, 'index'])->name('indexRekamKeuangan');
     Route::get('/delete-rekam-keuangan/{id}', [RekamKeuanganController::class, 'delete'])->name('deleteRekamKeuangan');
+
+    Route::get('/transaksi-hari-ini', [TransaksiNowController::class, 'showDataNow'])->name('transaksiNowIndex');
 
     // Jurusan
     Route::get('/jurusan', [JurusanController::class, 'index'])->name('indexJurusan');

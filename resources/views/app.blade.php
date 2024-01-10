@@ -75,6 +75,7 @@
                 $(".loading-overlay").fadeOut("slow");
             });
         </script>
+        @yield('add-script')
     <!--/ script-->
 </body>
 

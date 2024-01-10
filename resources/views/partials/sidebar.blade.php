@@ -83,14 +83,14 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs('indexRekamKeuangan') ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs('indexRekamKeuangan', 'transaksiNowIndex') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
                   <div data-i18n="Account Settings">Rekam Keuangan</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item {{ request()->routeIs('') ? 'active' : '' }}">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item {{ request()->routeIs('transaksiNowIndex') ? 'active' : '' }}">
+                        <a href="{{ route('transaksiNowIndex') }}" class="menu-link">
                           <div data-i18n="Account">Transaksi Hari Ini</div>
                         </a>
                       </li>
