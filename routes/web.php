@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\catatanKeuanganController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IjinController;
 use App\Http\Controllers\JurusanController;
@@ -39,13 +40,13 @@ Route::get('/scan', [ScanController::class, 'showScan'])->name('scan-show');
 Route::post('/validasi-qrcode', [ScanController::class, 'validasiqrcode'])->name('validasiqrcode');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+
     Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', [DashboardAdminController::class, 'index'])->name('welcome');
+
     // Siswa
     Route::get('/data-siswa', [SiswaController::class, 'showPage'])->name('data-siswa');
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');

@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <div class="loading-overlay">
         <div class="load-bar">
             <div class="bar"></div>
