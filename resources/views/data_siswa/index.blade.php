@@ -64,7 +64,7 @@
             </div>
         </form>
         <div class="table-responsive text-nowrap">
-            <table class="table">
+            <table class="table table-sm">
                 <thead>
                     <tr>
                         <th><strong>Aksi</strong></th>

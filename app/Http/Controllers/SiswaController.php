@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\TemplateExcelSiswa;
 use App\Imports\UserImport;
 use App\Models\SaldoModel;
 use App\Models\User;
@@ -158,5 +159,10 @@ class SiswaController extends Controller
         Excel::import(new UserImport(), $request->file('sheet'));
 
         return redirect()->route('data-siswa')->with('toast_success', 'Data siswa berhasil ditambahkan!');
+    }
+
+    public function downloadTemplate()
+    {
+        return Excel::download(new TemplateExcelSiswa, 'template-data-siswa.xlsx');
     }
 }

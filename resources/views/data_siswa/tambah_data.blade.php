@@ -17,7 +17,8 @@
     <div class="card p-3">
         <div class="container-view">
             <div class="row d-flex justify-content-end">
-                <div class="col-sm-2 text-end">
+                <div class="col-sm-5 d-flex justify-content-end">
+                    <a href="{{ route('downloadTemplateSiswa') }}" class="btn btn-primary me-4">Download Template Excel</a>
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#basicModal">
                         Import Data
                     </button>
