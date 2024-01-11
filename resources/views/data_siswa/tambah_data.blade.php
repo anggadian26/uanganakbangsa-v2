@@ -16,7 +16,15 @@
 @section('content')
     <div class="card p-3">
         <div class="container-view">
-
+            <div class="row d-flex justify-content-end">
+                <div class="col-sm-5 d-flex justify-content-end">
+                    <a href="{{ route('downloadTemplateSiswa') }}" class="btn btn-primary me-4">Download Template Excel</a>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#basicModal">
+                        Import Data
+                    </button>
+                    @include('data_siswa.modal.modal-import')
+                </div>
+            </div>
             <form action="{{ route('add-siswa') }}" method="post">
                 @csrf
                 <div class="row mb-3 justify-content-start mt-4">
