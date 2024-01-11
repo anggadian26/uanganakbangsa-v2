@@ -82,10 +82,29 @@
                     <div data-i18n="Analytics">Saldo Siswa</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('indexRekamKeuangan') ? 'active' : '' }}">
-                <a href="{{ route('indexRekamKeuangan') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-                    <div data-i18n="Analytics">Rekam Keuangan</div>
+
+            <li class="menu-item {{ request()->routeIs('indexRekamKeuangan', 'transaksiNowIndex') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+                  <div data-i18n="Account Settings">Rekam Keuangan</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ request()->routeIs('transaksiNowIndex') ? 'active' : '' }}">
+                        <a href="{{ route('transaksiNowIndex') }}" class="menu-link">
+                          <div data-i18n="Account">Transaksi Hari Ini</div>
+                        </a>
+                      </li>
+                  <li class="menu-item {{ request()->routeIs('indexRekamKeuangan') ? 'active' : '' }}">
+                    <a href="{{ route('indexRekamKeuangan') }}" class="menu-link">
+                      <div data-i18n="Account">History Transaksi</div>
+                    </a>
+                  </li>
+                </ul>
+            </li>
+            <li class="menu-item {{ request()->routeIs('catatanKeuanganIndex') ? 'active' : '' }}">
+                <a href="{{ route('catatanKeuanganIndex') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-money"></i>
+                    <div data-i18n="Analytics">Catatan Keuangan</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->routeIs('indexJurusan', 'indexDeleteReq') ? 'active open' : '' }}">
@@ -107,7 +126,7 @@
 
 
                 </ul>
-              </li>
+            </li>
         @endif
         @if (Auth::user()->role->role == 'siswa')
             <li class="menu-item {{ request()->routeIs('home-siswa') ? 'active' : '' }}">
