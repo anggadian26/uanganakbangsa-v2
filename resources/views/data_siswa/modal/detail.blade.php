@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-5">
                         {!! DNS2D::getBarcodeHTML("$i->barcode", 'QRCODE') !!}
                     </div>
@@ -19,15 +19,45 @@
                         <p><strong>Username:</strong> {{ $i->username }}</p>
                         <p><strong>Email:</strong> {{ $i->email }}</p>
                     </div>
+                </div> --}}
+
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">Nama</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="basic-default-name" value="{{ $i->name }}"
+                            readonly />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">Jurusan</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="basic-default-name" value="{{ $i->jurusan_name }}"
+                            readonly />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">Angkatan</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="basic-default-name" value="{{ $i->angkatan }}"
+                            readonly />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">username</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="basic-default-name" value="{{ $i->username }}"
+                            readonly />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">username</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="basic-default-name" value="{{ $i->email }}"
+                            readonly />
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-target="#modalToggle2" data-bs-toggle="modal"
-                    data-bs-dismiss="modal">
-                    Batal
-                </button>
-                <a class="btn btn-primary" href="{{ route('download-qrcode', ['barcode' => $i->barcode, 'info' => $i->name]) }}">Download QRCODE</a>
-            </div>
+
         </div>
     </div>
 </div>
