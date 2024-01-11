@@ -50,6 +50,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/data-siswa', [SiswaController::class, 'showPage'])->name('data-siswa');
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
+    // import data siswa
+    Route::post('/import-data-siswa', [SiswaController::class, 'importDataSiswa'])->name('importDataSiswa');
 
     Route::get('/tabungan-siswa-admin', [TabunganController::class, 'indexAdmin'])->name('tabungan-admin');
 

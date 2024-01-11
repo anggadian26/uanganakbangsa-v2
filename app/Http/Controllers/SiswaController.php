@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UserImport;
 use App\Models\SaldoModel;
 use App\Models\User;
 use Carbon\Carbon;
@@ -12,6 +13,7 @@ use Illuminate\Support\Str;
 use Milon\Barcode\DNS2D;
 use Spatie\Glide\GlideImage;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
 
 date_default_timezone_set("Asia/Jakarta");
 
@@ -149,5 +151,12 @@ class SiswaController extends Controller
         $qrImage->save(public_path('path-to-save/image.png'));
 
         return $qrImage->response('png');
+    }
+
+    public function importDataSiswa(Request $request) 
+    {
+        Excel::import(new UserImport(), $request->file('sheet'));
+
+        return redirect()->route('data-siswa')->with('toast_success', 'Data siswa berhasil ditambahkan!');
     }
 }
