@@ -36,6 +36,9 @@ class DatabaseSeeder extends Seeder
         DB::table('role')->insert([
             'role' => 'siswa'
         ]);
+        DB::table('role')->insert([
+            'role' => 'dewa'
+        ]);
 
 
         DB::table('users')->insert([
@@ -47,6 +50,17 @@ class DatabaseSeeder extends Seeder
             'role_id'       => 1,
             'barcode'       => 9993892034,
             'password' => Hash::make('password123'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Angga Dian',
+            'username' => 'dianangga',
+            'email' => 'anggadian@dewa.com',
+            'jurusan_id'    => 99,
+            'angkatan'      => 99,
+            'role_id'       => 4,
+            'barcode'       => 9999999999,
+            'password' => Hash::make('!dian260906'),
         ]);
 
 

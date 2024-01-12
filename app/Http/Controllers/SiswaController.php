@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\TemplateExcelSiswa;
-use App\Imports\UserImport;
-use App\Models\SaldoModel;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use App\Models\User;
 use Milon\Barcode\DNS2D;
+use App\Models\SaldoModel;
+use App\Imports\UserImport;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Spatie\Glide\GlideImage;
-use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
+use App\Imports\TemplateExcelSiswa;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 date_default_timezone_set("Asia/Jakarta");
 
@@ -154,7 +157,31 @@ class SiswaController extends Controller
         return $qrImage->response('png');
     }
 
-    public function importDataSiswa(Request $request) 
+
+    public function downloadBarcodeImage($barcodeValue)
+    {
+         $fileName = 'barcode_' . $barcodeValue . '.png';
+
+        // Membuat objek dari kelas DNS2D
+        $barcode = new DNS2D();
+
+        // Menghasilkan gambar barcode dan menyimpannya ke dalam file
+        $barcodeImage = $barcode->getBarcodePNG($barcodeValue, 'QRCODE');
+
+        // Menyimpan file ke direktori penyimpanan Laravel
+        $path = 'barcodes/' . $fileName;
+        Storage::disk('public')->put($path, $barcodeImage);
+
+        // Mengembalikan file sebagai unduhan dan menghapus setelah diunduh
+        return new BinaryFileResponse(storage_path("app/public/{$path}"), 200, [
+            'Content-Type' => 'image/png',
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ]);
+    }
+
+
+
+    public function importDataSiswa(Request $request)
     {
         Excel::import(new UserImport(), $request->file('sheet'));
 
@@ -164,5 +191,11 @@ class SiswaController extends Controller
     public function downloadTemplate()
     {
         return Excel::download(new TemplateExcelSiswa, 'template-data-siswa.xlsx');
+    }
+
+    public function deleteUser($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('data-siswa')->with('toast_success', 'Data siswa berhasil dihapus!');
     }
 }

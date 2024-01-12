@@ -27,12 +27,17 @@ class Controller extends BaseController
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
-            // if ($user->role === 'Admin') {
+            
+            if ($user->role->role === 'admin' || $user->role->role === 'pamong') {
                 return redirect()->intended('/');
-            // } else {
-            //     return redirect()->intended('/dashboard');
-            // }
+            } 
+            
+            if($user->role->role === 'siswa' ) {
+                return redirect()->intended('/home');
+            }
+            if($user->role->role === 'dewa' ) {
+                return redirect()->intended('/dewaUser260906');
+            }
         }
 
         return back()->with('loginError', 'Login failed!');

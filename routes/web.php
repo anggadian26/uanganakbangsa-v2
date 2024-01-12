@@ -18,6 +18,7 @@ use App\Http\Controllers\TabunganController;
 use App\Http\Controllers\TarikSaldoController;
 use App\Http\Controllers\TransaksiNowController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDewaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,21 +41,26 @@ Route::get('/scan', [ScanController::class, 'showScan'])->name('scan-show');
 Route::post('/validasi-qrcode', [ScanController::class, 'validasiqrcode'])->name('validasiqrcode');
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/download-qrcode/{barcode}/{info}', [SiswaController::class, 'downloadQrCode'])->name('download-qrcode');
+    Route::get('/asdfsdf', function() {
+        return view('welcome');
+    });
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin,pamong'])->group(function () {
     Route::get('/', [DashboardAdminController::class, 'index'])->name('welcome');
 
     // Siswa
     Route::get('/data-siswa', [SiswaController::class, 'showPage'])->name('data-siswa');
     Route::get('/tambah-data-siswa', [SiswaController::class, 'addShowPage'])->name('tambah-siswa');
     Route::post('/add-siswa', [SiswaController::class, 'add_siswa'])->name('add-siswa');
+    Route::get('/delete-data-siswa/{id}', [SiswaController::class, 'deleteUser'])->name('deleteUser');
     // import data siswa
     Route::post('/import-data-siswa', [SiswaController::class, 'importDataSiswa'])->name('importDataSiswa');
     // download template excel
     Route::get('/download-template-excel-siswa', [SiswaController::class, 'downloadTemplate'])->name('downloadTemplateSiswa');
+    // qrCode
+    Route::get('/download-barcode/{barcodeValue}', [SiswaController::class, 'downloadBarcodeImage'])->name('download.barcode');
+
 
     Route::get('/tabungan-siswa-admin', [TabunganController::class, 'indexAdmin'])->name('tabungan-admin');
 
@@ -90,4 +96,8 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/success', [TarikSaldoController::class, 'successPage'])->name('success');
 });
 
-
+Route::middleware(['auth', 'role:dewa'])->group(function () { 
+    Route::get('/dewaUser260906', [UserDewaController::class, 'showData'])->name('dewaUser2696');
+    Route::post('/addUserDewa98sjs465/asidfho', [UserDewaController::class, 'addUserDewa'])->name('addDewaUser2696');
+    Route::get('/deleteUserDewa/{id}', [UserDewaController::class, 'deleteUserDewa'])->name('userDeleteDewa');
+});

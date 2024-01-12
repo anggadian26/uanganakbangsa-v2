@@ -84,6 +84,8 @@
                     @else
                         @foreach ($siswa as $i)
                             @include('data_siswa.modal.detail')
+                            @include('data_siswa.modal.modalDelSiswa')
+                            @include('data_siswa.modal.modalViewBarcode')
                             <tr>
                                 <td>
                                     <div class="dropdown">
@@ -93,14 +95,17 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#detailUser{{ $i->id }}"><i class="bx bx-detail me-1"></i>
+                                                data-bs-target="#detailUser{{ $i->id }}"><i
+                                                    class="bx bx-detail me-1"></i>
                                                 Detail</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-1"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
+                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                data-bs-target="#barcode{{ $i->id }}"><i
+                                                    class="bx bx-barcode me-1"></i>
+                                                Barcode</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                data-bs-target="#deleteUser{{ $i->id }}"><i
                                                     class="bx bx-trash me-1"></i>
-                                                Delete</a>
+                                                Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -118,23 +123,24 @@
         <div class="mt-5">
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-end">
-                    <li class="page-item {{ ($siswa->currentPage() == 1) ? 'disabled' : '' }} prev">
+                    <li class="page-item {{ $siswa->currentPage() == 1 ? 'disabled' : '' }} prev">
                         <a class="page-link" href="{{ $siswa->previousPageUrl() }}" aria-label="Previous">
                             <i class="tf-icon bx bx-chevrons-left"></i>
                         </a>
                     </li>
                     @for ($i = 1; $i <= $siswa->lastPage(); $i++)
-                        <li class="page-item {{ ($siswa->currentPage() == $i) ? 'active' : '' }}">
+                        <li class="page-item {{ $siswa->currentPage() == $i ? 'active' : '' }}">
                             <a class="page-link" href="{{ $siswa->url($i) }}">{{ $i }}</a>
                         </li>
                     @endfor
-                    <li class="page-item {{ ($siswa->currentPage() == $siswa->lastPage()) ? 'disabled' : '' }} next">
+                    <li class="page-item {{ $siswa->currentPage() == $siswa->lastPage() ? 'disabled' : '' }} next">
                         <a class="page-link" href="{{ $siswa->nextPageUrl() }}" aria-label="Next">
                             <i class="tf-icon bx bx-chevrons-right"></i>
                         </a>
                     </li>
                 </ul>
-                <span>Total data {{ $total[0]->totalData }}, halaman {{ $siswa->currentPage() }} dari {{ $siswa->lastPage() }}</span>
+                <span>Total data {{ $total[0]->totalData }}, halaman {{ $siswa->currentPage() }} dari
+                    {{ $siswa->lastPage() }}</span>
             </nav>
         </div>
     </div>
