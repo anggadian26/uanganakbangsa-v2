@@ -37,9 +37,11 @@
             </div>
             <div class="row mt-5 mb-3">
                 <div class="col-sm-10 text-end">
-                    <button type="submit" class="btn btn-primary">Hapus Data Keuangan</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#deleteRequest">Hapus Data Keuangan</button>
                 </div>
             </div>
+            @include('req-delete.modalAlertDel')
         </form>
     </div>
 @endsection

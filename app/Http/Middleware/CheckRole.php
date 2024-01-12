@@ -19,6 +19,7 @@ class CheckRole
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = Auth::user();
+        // dd($roles);
 
         // Periksa apakah pengguna telah terotentikasi dan memiliki role yang valid
         if ($user && $user->role && in_array($user->role->role, $roles)) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JurusanModel;
 use App\Models\SaldoModel;
+use App\Models\TabunganModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,13 +23,11 @@ class ReqDeleteController extends Controller
 
         $user = User::where('angkatan', $angkatan)->pluck('id');
 
-        dd($user);
-
-        exit;
-
-        JurusanModel::whereIn('user_id', $user)->delete();
+        TabunganModel::whereIn('user_id', $user)->delete();
 
         SaldoModel::whereIn('user_id', $user)->delete();
+
+        User::where('angkatan', $angkatan)->delete();
 
         return redirect()->route('indexDeleteReq')->with('toast_success', 'Data has been deleted successfully.');
     }

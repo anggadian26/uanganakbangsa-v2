@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>UangAnakBangsa - @yield('head')</title>
-
+    <link rel="icon" href="{{ asset('assets/img/bnlogo.png') }}" rel="shorcut icon">
     <meta name="description" content="" />
 
     @include('link-asset.head')
