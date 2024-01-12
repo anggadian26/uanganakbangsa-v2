@@ -22,7 +22,7 @@
         <!-- Dashboard -->
         
 
-        @if (Auth::user()->role->role == 'admin')
+        @if (Auth::user()->role->role == 'admin' || Auth::user()->role->role == 'pamong')
             <li class="menu-item {{ request()->routeIs('welcome') ? 'active' : '' }}">
                 <a href="{{ route('welcome') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>

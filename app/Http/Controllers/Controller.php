@@ -28,7 +28,7 @@ class Controller extends BaseController
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             
-            if ($user->role->role === 'admin') {
+            if ($user->role->role === 'admin' || $user->role->role === 'pamong') {
                 return redirect()->intended('/');
             } 
             
