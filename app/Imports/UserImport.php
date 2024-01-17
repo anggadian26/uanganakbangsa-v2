@@ -32,6 +32,7 @@ class UserImport implements ToCollection, WithHeadingRow
                     'name'          => $row['nama'],
                     'username'      => $row['username'],
                     'email'         => $row['email'],
+                    'pin'           => $row['pin'],
                     'jurusan_id'    => $jurusan['jurusan_id'],
                     'angkatan'      => $row['angkatan'],
                     'barcode'       => $qr_value,

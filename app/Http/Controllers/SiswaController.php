@@ -100,6 +100,7 @@ class SiswaController extends Controller
             'angkatan'      => 'required',
             'username'      => 'required',
             'email'         => 'required',
+            'pin'           => 'required|digits:4',
             'password'      => 'required'
         ]);
 
@@ -108,6 +109,7 @@ class SiswaController extends Controller
             'jurusan_id' => $validate['jurusan_id'],
             'angkatan'  => $validate['angkatan'],
             'username'  => $validate['username'],
+            'pin'   => $validate['pin'],
             'email'     => $validate['email'],
             'password'  => Hash::make($validate['password']),
             'role_id'   => 3,

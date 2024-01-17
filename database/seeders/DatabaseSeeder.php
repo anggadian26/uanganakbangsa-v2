@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             'angkatan'      => 99,
             'role_id'       => 1,
             'barcode'       => 9993892034,
+            'pin'           => 1111,
             'password' => Hash::make('password123'),
         ]);
 
@@ -60,6 +61,7 @@ class DatabaseSeeder extends Seeder
             'angkatan'      => 99,
             'role_id'       => 4,
             'barcode'       => 9999999999,
+            'pin'   => 0000 ,
             'password' => Hash::make('!dian260906'),
         ]);
 

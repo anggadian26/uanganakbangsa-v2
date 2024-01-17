@@ -33,7 +33,7 @@ class Controller extends BaseController
             } 
             
             if($user->role->role === 'siswa' ) {
-                return redirect()->intended('/home');
+                return redirect()->intended('/pinCode');
             }
             if($user->role->role === 'dewa' ) {
                 return redirect()->intended('/dewaUser260906');

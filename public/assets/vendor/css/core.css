@@ -14718,6 +14718,8 @@ body {
   right: 1.400rem;
   z-index: 999999;
   /* padding: 10px; */
+  padding-top: 20px;
+  padding-bottom: 20px;
   box-shadow: 0 1px 20px 1px #2B95CB;
 }
 .buy-now .btn-buy-now:hover {

@@ -83,6 +83,18 @@
                     </div>
                 </div>
                 <div class="row mb-3 justify-content-start">
+                    <label class="col-sm-2 col-form-label text-start" for="basic-default-name">Pin</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="pin" class="form-control @error('pin') is-invalid @enderror"
+                            id="basic-default-name" value="{{ old('pin') }}" maxlength="4">
+                        @error('pin')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-start">
                     <label class="col-sm-2 col-form-label text-start" for="basic-default-name">Email</label>
                     <div class="col-sm-6">
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"

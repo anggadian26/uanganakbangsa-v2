@@ -50,9 +50,16 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label" for="basic-default-name">username</label>
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">Email</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="basic-default-name" value="{{ $i->email }}"
+                            readonly />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="basic-default-name">Pin</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="basic-default-name" value="{{ $i->pin }}"
                             readonly />
                     </div>
                 </div>

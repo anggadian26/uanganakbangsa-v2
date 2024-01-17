@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('jurusan_id');
             $table->integer('angkatan');
             $table->bigInteger('barcode')->unique();
+            $table->integer('pin');
             $table->foreignId('role_id');
             $table->string('password');
             $table->rememberToken();

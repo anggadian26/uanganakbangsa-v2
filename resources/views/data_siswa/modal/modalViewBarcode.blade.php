@@ -9,12 +9,12 @@
             </div>
             <div class="modal-body">
                 <div class="row d-flex justify-content-center">
-                    {{-- {!! DNS2D::getBarcodeHTML("$i->barcode", 'QRCODE') !!} --}}
+                    {!! DNS2D::getBarcodeHTML("$i->barcode", 'QRCODE') !!}
                     {{-- {!! DNS2D::getBarcodePNGPath('$i->barcode', 'PDF417') !!} --}}
                     {{-- <img src="data:image/png;base64,{{ DNS2D::getBarcodePNGData($i->barcode, 'QRCODE') }}" alt="Barcode"> --}}
-                    @php
+                    {{-- @php
                         echo '<img src="data:image/png;base64,' . DNS2D::getBarcodePNG("$i->barcode", 'QRCODE',12,12) . '" alt="barcode"   />';
-                    @endphp
+                    @endphp --}}
                 </div>
             </div>
             {{-- <div class="modal-footer">

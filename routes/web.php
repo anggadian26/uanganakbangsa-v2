@@ -8,6 +8,7 @@ use App\Http\Controllers\IjinController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MasukSaldoController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\pinUserController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RekamKeuanganController;
 use App\Http\Controllers\ReqDeleteController;
@@ -94,6 +95,11 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/tarik-saldo', [TarikSaldoController::class, 'indexSiswa'])->name('tariksaldo-siswa');
     Route::post('/tarik-saldo-action', [TarikSaldoController::class, 'tarikSaldoSiswa'])->name('tariksaldo-action');
     Route::get('/success', [TarikSaldoController::class, 'successPage'])->name('success');
+    // Route::get('/', function() {
+    //     return view('auth.pinPageSiswa');
+    // })->name('pinPage');
+    Route::get('/pinCode', [pinUserController::class, 'index'])->name('pinPage');
+    Route::post('piCode-action', [pinUserController::class, 'pincodeAction'])->name('pinCodeAction');
 });
 
 Route::middleware(['auth', 'role:dewa'])->group(function () { 

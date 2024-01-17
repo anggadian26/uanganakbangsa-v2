@@ -59,7 +59,7 @@
                       </li>
                   <li class="menu-item {{ request()->routeIs('indexRekamKeuangan') ? 'active' : '' }}">
                     <a href="{{ route('indexRekamKeuangan') }}" class="menu-link">
-                      <div data-i18n="Account">History Transaksi</div>
+                      <div data-i18n="Account">Riwayat Transaksi</div>
                     </a>
                   </li>
                 </ul>
@@ -73,7 +73,7 @@
             <li class="menu-item {{ request()->routeIs('indexJurusan', 'indexDeleteReq') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                  <div data-i18n="Account Settings">Umum</div>
+                  <div data-i18n="Account Settings">Lainnya</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item {{ request()->routeIs('indexDeleteReq') ? 'active' : '' }}">

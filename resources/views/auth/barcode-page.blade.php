@@ -163,7 +163,7 @@
                 success: function(response) {
                     console.log(response);
                     if (response.status == 200) {
-                        window.location.href = "{{ url('/home') }}";
+                        window.location.href = "{{ url('/pinCode') }}";
                     } else {
                         alert('gagal');
                     }

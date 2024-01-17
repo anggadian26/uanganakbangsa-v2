@@ -31,6 +31,7 @@ class TemplateExcelSiswa implements FromCollection, WithHeadings
             'Jurusan',
             'Angkatan',
             'Username',
+            'pin',
             'Email',
             'Password',
             'Saldo',

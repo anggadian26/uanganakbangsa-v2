@@ -127,7 +127,7 @@
     </div>
     <!-- / Layout wrapper -->
     <div class="buy-now">
-        <a href="{{ route('tariksaldo-siswa') }}" class="btn btn-primary btn-buy-now text-white"><span
+        <a href="{{ route('tariksaldo-siswa') }}" class="btn btn-primary btn-buy-now text-white fs-5"><span
                 class="tf-icons bx bxs-wallet"></span>&nbsp; Tarik Saldo</a>
     </div>
     <!--script-->

@@ -11,7 +11,7 @@
                     </div>
                     <div class="text-center">
                         <p class="fw-semibold fs-6">
-                            Apakah Anda ingin mengahapus data Kategori
+                            Apakah Anda ingin mengahapus data siswa
                             <span
                                 class="fw-bold text-primary d-block mb-2">{{ $i->name }}-{{ $i->jurusan_code }}</span>
                         </p>
@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Batal
                 </button>
-                <form action="{{ route('deleteUser', ['id' => $i->id]) }}" method="POST"
+                <form action="{{ route('deleteUser', ['id' => $i->id]) }}" method="get"
                     style="display:inline">
                     @csrf
                     @method('DELETE')
