@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/asdfsdf', function() {
         return view('welcome');
     });
+    Route::post('/ubah-pin', [pinUserController::class, 'ubahPin'])->name('ubahPinUser');
 });
 
 Route::middleware(['auth', 'role:admin,pamong'])->group(function () {

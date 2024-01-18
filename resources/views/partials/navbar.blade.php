@@ -15,13 +15,20 @@
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
 
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
+                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                </a>
 
 
                 <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ubahPinUser">
+                            <i class="bx bxs-key me-2"></i>
+                            <span class="align-middle">Ubah Pin</span>
+                        </a>
+                    </li>
 
                     <li>
                         <div class="dropdown-divider"></div>
@@ -35,7 +42,10 @@
                     </li>
                 </ul>
             </li>
+
             <!--/ User -->
         </ul>
     </div>
 </nav>
+
+@include('home.modal.ubahPinUser')
