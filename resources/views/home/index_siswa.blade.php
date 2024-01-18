@@ -46,7 +46,7 @@
                                     <div class="d-flex align-items-end row pb-0">
                                         <div class="col-sm-12 mb-0">
                                             <div class="card-body">
-                                                <h5 class="card-title text-primary pb-4">Selamat Pagi!
+                                                <h5 class="card-title text-primary pb-4">Hai
                                                     {{ Auth::user()->name }} 👋</h5>
                                                 <p class="mb-0 text-end">Saldo</p>
                                                 <h4 class="text-end pb-0 text-primary"><span class="fw-bold">Rp.
