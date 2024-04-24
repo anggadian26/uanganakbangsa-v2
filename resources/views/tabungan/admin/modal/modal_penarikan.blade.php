@@ -42,7 +42,7 @@
                             <textarea class="form-control" id="exampleFormControlTextareaPenarikan{{ $i->id }}" rows="2" name="keterangan"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" id="hiddenNominalInputPenarikan{{ $i->id }}" name="penarikan" />
+                    <input type="hidden" id="hiddenNominalInputPenarikan" name="penarikan" />
                     <input type="hidden" name="user_id" value="{{ $i->user_id }}" />
                     <input type="hidden" name="saldo_awal" value="{{ $i->saldo_amount }}" />
                     <div class="modal-footer">
@@ -68,13 +68,14 @@
             input.setAttribute('data-value', numericValue);
 
             // Set nilai sebenarnya di input tersembunyi
-            let hiddenInput = document.getElementById('hiddenNominalInputPenarikan{{ $i->id }}');
+            let hiddenInput = document.getElementById('hiddenNominalInputPenarikan');
             hiddenInput.value = numericValue;
+            console.log(hiddenInput);
         } else {
             // Tangani jika input tidak berisi nilai numerik
             input.value = '';
             input.setAttribute('data-value', '');
-            let hiddenInput = document.getElementById('hiddenNominalInputPenarikan{{ $i->id }}');
+            let hiddenInput = document.getElementById('hiddenNominalInputPenarikan');
             hiddenInput.value = '';
         }
     }

@@ -43,7 +43,8 @@
                             <textarea class="form-control" id="exampleFormControlTextareaPemasukkan{{ $i->id }}" rows="2" name="keterangan"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" id="hiddenNominalInputPemasukkan{{ $i->id }}" name="pemasukkan" />
+                    {{-- <input type="hidden" id="hiddenNominalInputPemasukkan{{ $i->id }}" name="pemasukkan" /> --}}
+                    <input type="hidden" id="hiddenNominalInputPemasukkan" name="pemasukkan" />
                     <input type="hidden" name="user_id" value="{{ $i->user_id }}" />
                     <input type="hidden" name="saldo_awal" value="{{ $i->saldo_amount }}" />
                     <div class="modal-footer">
@@ -62,20 +63,21 @@
     function formatNominalPemasukkan(input) {
         let value = input.value.replace(/[^\d]/g, ''); // Hapus semua karakter kecuali digit
         let numericValue = parseInt(value);
-
+        
         if (!isNaN(numericValue)) {
             let formattedValue = numericValue.toLocaleString('id-ID'); // Menggunakan konfigurasi lokal Indonesia
             input.value = `Rp. ${formattedValue}`;
             input.setAttribute('data-value', numericValue);
 
             // Set nilai sebenarnya di input tersembunyi
-            let hiddenInput = document.getElementById('hiddenNominalInputPemasukkan{{ $i->id }}');
+            let hiddenInput = document.getElementById('hiddenNominalInputPemasukkan');
             hiddenInput.value = numericValue;
+            console.log(numericValue);
         } else {
             // Tangani jika input tidak berisi nilai numerik
             input.value = '';
             input.setAttribute('data-value', '');
-            let hiddenInput = document.getElementById('hiddenNominalInputPemasukkan{{ $i->id }}');
+            let hiddenInput = document.getElementById('hiddenNominalInputPemasukkan');
             hiddenInput.value = '';
         }
     }

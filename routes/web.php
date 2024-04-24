@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\catatanKeuanganController;
+use App\Http\Controllers\CetakBarcodeController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\HomeController;
@@ -87,6 +88,10 @@ Route::middleware(['auth', 'role:admin,pamong'])->group(function () {
 
     // catatan-keuangan
     Route::get('/catatan-keuangan', [catatanKeuanganController::class, 'index'])->name('catatanKeuanganIndex');
+
+    // cetak-barcode
+    Route::get('/cetak-barcode-siswa', [CetakBarcodeController::class, 'index'])->name('cetakBarcodeIndex');
+    Route::post('/cetak-barcode-action', [CetakBarcodeController::class, 'cetakBarcode'])->name('cetakBarcodeAction');
 });
 
 

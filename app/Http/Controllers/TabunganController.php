@@ -100,7 +100,9 @@ class TabunganController extends Controller
 
     public function penarikanAdmin(Request $request)
     {
-        if ($request->penarikan == null || $request->penarikan == 0) {
+        $penarikan_titik = str_replace('Rp.', '', $request->hiden);
+        $penarikan = intval(str_replace('.', '', $penarikan_titik)); 
+        if ($penarikan == null || $penarikan == 0) {
             return redirect()->route('tabungan-admin')->with('toast_error', 'Saldo gagal ditarik!');
         }
 
@@ -110,14 +112,13 @@ class TabunganController extends Controller
         ]);
 
         $saldo_awal = $request->saldo_awal;
-        $validate_penarikan = $validate['penarikan'];
-        $result_penarikan = $saldo_awal - $validate_penarikan;
+        $result_penarikan = $saldo_awal - $penarikan;
         $record_id = Auth::id();
         $tanggal = Carbon::now()->toDateString();
 
         $tabungan = [
             'user_id'       => $request->user_id,
-            'penarikan'     => $validate_penarikan,
+            'penarikan'     => $penarikan,
             'jenis'         => 'K',
             'tanggal'       => $tanggal,
             'jumlah_sisa'   => $result_penarikan,

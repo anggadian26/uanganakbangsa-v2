@@ -54,7 +54,8 @@ class UserDewaController extends Controller
             'email'     => $validate['email'],
             'password'  => Hash::make($validate['password']),
             'role_id'   => $validate['role_id'],
-            'barcode'   => $qr_value
+            'barcode'   => $qr_value,
+            'pin'       => 9999
         ];
 
         $user = User::create($data);

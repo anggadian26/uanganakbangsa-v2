@@ -70,12 +70,17 @@
                     <div data-i18n="Analytics">Catatan Keuangan</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('indexJurusan', 'indexDeleteReq') ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs('indexJurusan', 'indexDeleteReq', 'cetakBarcodeIndex') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
                   <div data-i18n="Account Settings">Lainnya</div>
                 </a>
                 <ul class="menu-sub">
+                    <li class="menu-item {{ request()->routeIs('cetakBarcodeIndex') ? 'active' : '' }}">
+                        <a href="{{ route('cetakBarcodeIndex') }}" class="menu-link">
+                          <div data-i18n="Account">Cetak Barcode</div>
+                        </a>
+                    </li>
                     <li class="menu-item {{ request()->routeIs('indexDeleteReq') ? 'active' : '' }}">
                         <a href="{{ route('indexDeleteReq') }}" class="menu-link">
                           <div data-i18n="Account">Hapus Data Keuangan</div>

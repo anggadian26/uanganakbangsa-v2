@@ -98,7 +98,7 @@ class SiswaController extends Controller
             'name'  => 'required',
             'jurusan_id'    => 'required',
             'angkatan'      => 'required',
-            'username'      => 'required',
+            'username' => 'required|unique:users,username',
             'email'         => 'required',
             'pin'           => 'required|digits:4',
             'password'      => 'required'

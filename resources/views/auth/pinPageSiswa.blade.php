@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>PIN</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @include('link-asset.head')
     <style>
@@ -114,7 +114,7 @@
 <body>
     <div class="row">
         <div class="mb-3 text-center">
-            <p>Hallo user 👋</p>
+            <p>Hi {{ Auth::user()->name }} 👋</p>
         </div>
         <div class="pin-login" id="mainPinLogin">
             <div class="me-4 ms-4 text-center">
